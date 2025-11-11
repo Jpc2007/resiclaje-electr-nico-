@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementación del Reciclaje Electrónico</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      background: url("fondo.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #1e2b10;
+    }
+
+    nav {
+      background: linear-gradient(180deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    nav .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    nav h3 {
+      margin: 0;
+      font-size: 1.2em;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8em;
+      cursor: pointer;
+      display: none;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #f1f8e9;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+      display: block;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    main {
+      margin: 110px auto 80px auto;
+      max-width: 950px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      padding: 40px 50px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, #2e7d32, #66bb6a);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #2e7d32;
+      border-left: 6px solid #66bb6a;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    p, li {
+      text-align: justify;
+      line-height: 1.6;
+      font-size: 1em;
+    }
+
+    .autores {
+      background: #e6f4ea;
+      border-left: 5px solid #388e3c;
+      padding: 12px 15px;
+      margin: 20px 0;
+      border-radius: 10px;
+      font-size: 0.95em;
+    }
+
+    .autores a {
+      color: #1b5e20;
+      text-decoration: none;
+    }
+
+    .autores a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #2e7d32, #66bb6a);
+      color: white;
+      text-decoration: none;
+      padding: 14px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn-link:hover {
+      background: linear-gradient(135deg, #43a047, #81c784);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      background: #2e7d32;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+
+    .audio-lateral {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #388e3c;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .audio-lateral h4 {
+      color: #2e7d32;
+      font-size: 1em;
+      margin: 0 0 5px 0;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+      nav ul {
+        flex-direction: column;
+        background: #1b5e20;
+        position: absolute;
+        top: 55px;
+        left: 0;
+        width: 100%;
+        display: none;
+        padding: 10px 0;
+      }
+      nav ul.show {
+        display: block;
+      }
+      main {
+        padding: 25px 20px;
+        margin: 90px 15px 80px 15px;
+      }
+      header h1 {
+        font-size: 1.3em;
+      }
+      .audio-lateral {
+        width: 90%;
+        bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <h3>Reciclaje Electrónico</h3>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+    <ul id="menu">
+      <li><a href="#objetivo-general">Objetivo General</a></li>
+      <li><a href="#objetivos-especificos">Objetivos Específicos</a></li>
+      <li><a href="#problematica">Problemática</a></li>
+      <li><a href="#hipotesis">Hipótesis</a></li>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#justificacion">Justificación</a></li>
+      <li><a href="#conclusion">Conclusión</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Implementación del Reciclaje Electrónico en la Sociedad</h1>
+      <h1>Para disminuir los desechos electrónicos y la contaminación</h1>
+      <p><strong>Instituto Tecnológico Superior de Pánuco</strong></p>
+      <p>División: Ingeniería Electrónica</p>
+    </header>
+
+    <section class="autores">
+      <p><strong>Asesor:</strong> Dr. Juan Carlos Ramírez Vázquez (<a href="mailto:carlos.ramirez@itspanuco.edu.mx">carlos.ramirez@itspanuco.edu.mx</a>)</p>
+      <p><strong>Autores:</strong></p>
+      <ul>
+        <li>Ponce Cortes Jesús¹ (<a href="mailto:jesusponcecortes07@gmail.com">jesusponcecortes07@gmail.com</a>)</li>
+        <li>Castillo Zaragoza Denis Idali² (<a href="mailto:deniscastillozaragoza@gmail.com">deniscastillozaragoza@gmail.com</a>)</li>
+        <li>Benites Turrubiates Mitka Aridai³ (<a href="mailto:mitkabenites@gmail.com">mitkabenites@gmail.com</a>)</li>
+        <li>Diaz Aguilar José Pablo⁴ (<a href="mailto:josepablodiazaguilar@gmail.com">josepablodiazaguilar@gmail.com</a>)</li>
+      </ul>
+    </section>
+
+    <section id="objetivo-general">
+      <h2>Objetivo General</h2>
+      <p>Realizar una investigación para conocer los distintos métodos para poder llevar a cabo el reciclaje de componentes de los distintos aparatos electrónicos para darles una nueva vida útil.</p>
+    </section>
+
+    <section id="objetivos-especificos">
+      <h2>Objetivos Específicos</h2>
+      <ol>
+        <li>Analizar los componentes universales que están presentes en las placas electrónicas para determinar su capacidad de reutilización o recuperación.</li>
+        <li>Identificar los métodos de reciclaje existentes y que son aplicables a las placas electrónicas, evaluando su eficiencia y sostenibilidad ambiental.</li>
+      </ol>
+    </section>
+
+    <section id="problematica">
+      <h2>Problemática</h2>
+      <p>La problemática central de la investigación se basa en la insuficiente recolección y reciclaje adecuado de Residuos de Aparatos Eléctricos y Electrónicos a nivel mundial, ya que esto genera contaminación y riesgos serios a la salud por el manejo inadecuado y la acumulación de residuos que liberan sustancias químicas tóxicas al medio ambiente, contaminando los ecosistemas.</p>
+    </section>
+
+    <section id="hipotesis">
+      <h2>Hipótesis</h2>
+      <p><strong>H1:</strong> Implementar métodos de reciclaje de componentes eléctricos para así generar menos desechos.</p>
+      <p><strong>H2:</strong> Implementar la recuperación de los materiales de los desechos para recuperarlos y darles una nueva vida útil.</p>
+    </section>
+
+    <section id="resumen">
+      <h2>Resumen</h2>
+      <p>El mundo en la actualidad atraviesa una etapa de gran transformación digital, donde las tecnologías impactan significativamente en nuestra forma de vivir, trabajar, estudiar y relacionarnos. Como consecuencia, la generación de residuos de aparatos eléctricos y electrónicos (RAEE) ha aumentado de forma notable. Según el <em>Global E-waste Monitor</em> (2022), se produjeron 62 mil millones de kilogramos de RAEE a nivel mundial, lo que equivale a un promedio de 7.8 kg por persona. De esa cantidad, únicamente el 22.3% fue registrado como correctamente recogido y reciclado (<em>Universidad Autónoma de Nuevo León, 2025</em>).</p>
+      <p>Los artículos electrónicos contienen muchas sustancias tóxicas que cuando se convierten en desechos y se manejan utilizando prácticas ambientalmente inadecuadas pueden liberarse al medio ambiente (<em>Organización Mundial de la Salud, 2023</em>).</p>
+      <p>El reciclaje de residuos electrónicos es importante para el medio ambiente por las siguientes razones:</p>
+      <ul>
+        <li>Reducción de la contaminación</li>
+        <li>Conservación de recursos</li>
+        <li>Reducción de residuos en vertederos</li>
+        <li>Fomento del desarrollo sostenible (<em>Genox Recycling Tech Co., 2024</em>)</li>
+      </ul>
+    </section>
+
+    <section id="justificacion">
+      <h2>Justificación</h2>
+      <p>Esta investigación es de gran importancia, ya que en ella se aborda el reciclaje electrónico y cómo contribuye a reducir la contaminación ambiental. Además, propone aplicar tecnologías para optimizar la separación de materiales, promoviendo prácticas sostenibles que benefician al medio ambiente, impulsan la economía y fomentan el desarrollo responsable.</p>
+    </section>
+
+    <section id="conclusion">
+      <h2>Conclusión</h2>
+      <p>El reciclaje electrónico es esencial para reducir la contaminación, recuperar materiales valiosos y fomentar la sostenibilidad. Su implementación en ingeniería permite reutilizar componentes, materiales, optimizar recursos y promover la economía circular. Además, contribuye a la protección del medio ambiente y la salud, concluyendo que es una estrategia integral y necesaria.</p>
+    </section>
+
+    <div style="text-align:center;">
+      <a href="https://docs.google.com/document/d/1vA8Ybv1GzOjl0-KLRhlUvDSIpJm4DTeNWVxjX8bn_jI/edit?usp=sharing" target="_blank" class="btn-link">🌱 Más información aquí</a>
+    </div>
+
+    <footer>
+      <p>© 2025 | Instituto Tecnológico Superior de Pánuco | Ingeniería Electrónica</p>
+    </footer>
+  </main>
+
+  <div class="audio-lateral">
+    <h4>🎧 Escucha la presentación</h4>
+    <audio controls>
+      <source src="audio investigacion (1).mp3" type="audio/mpeg">
+      Tu navegador no soporta el audio.
+    </audio>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
